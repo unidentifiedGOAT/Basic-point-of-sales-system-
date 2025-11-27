@@ -1,0 +1,116 @@
+# ======== LOAD DATA ========
+items = [
+    {"id": "1", "name": "Coke", "price": 25, "stock": 20},
+    {"id": "2", "name": "Sprite", "price": 25, "stock": 30},
+]
+
+
+# ======== DISPLAY MENU ========
+def display_menu():
+    print("\n========== POINT OF SALE SYSTEM ==========")
+    print("1. Add Item")
+    print("2. View Items")
+    print("3. Search Item")
+    print("4. Delete Item")
+    print("5. Save Data")
+    print("6. Exit")
+    print("==========================================")
+    
+
+# ======== ADD ITEM ========
+def add_item():
+    print("\n--- ADD ITEM ---")
+    item_id = input("Enter Item ID: ")
+    name = input("Enter Item Name: ")
+    price = float(input("Enter Item Price: "))
+    stock = int(input("Enter Item Stock: "))
+
+    items.append({"id": item_id, "name": name, "price": price, "stock": stock})
+    
+    print("\n--- RESULT ---")
+    print(f"Item '{name}' added successfully!")
+
+
+# ======== VIEW ITEMS ========
+def view_items():
+    print("\n--- VIEW ITEMS ---")
+    if not items:
+        print("No items available.")
+    else:
+        for item in items:
+            print(f"ID: {item['id']} | Name: {item['name']} | Price: {item['price']} | Stock: {item['stock']}")
+    
+    print("\n--- RESULT ---")
+    print("Items displayed successfully.")
+
+
+# ======== SEARCH ITEM ========
+def search_item():
+    print("\n--- SEARCH ITEM ---")
+    term = input("Enter item name to search: ").lower()
+
+    print("\nProcessing search...")
+
+    found = False
+    for item in items:
+        if term in item["name"].lower():
+            print(f"Found: {item['name']} | Price: {item['price']} | Stock: {item['stock']}")
+            found = True
+    
+    print("\n--- RESULT ---")
+    if not found:
+        print("No matching item found.")
+    else:
+        print("Search done.")
+
+
+# ======== DELETE ITEM ========
+def delete_item():
+    print("\n--- DELETE ITEM ---")
+    item_id = input("Enter Item ID to delete: ")
+
+    for item in items:
+        if item["id"] == item_id:
+            items.remove(item)
+            print("\n--- RESULT ---")
+            print("Item deleted successfully!")
+            return
+    
+    print("\n--- RESULT ---")
+    print("Item not found.")
+
+
+# ======== SAVE DATA (Simulation) ========
+def save_data():
+    print("\n--- SAVE DATA ---")
+    print("Data saved successfully! (simulation only)")
+    print("\n--- RESULT ---")
+    print("Save complete.")
+
+
+# ======== MAIN LOOP (FOLLOWS THE FLOWCHART LOOP) ========
+def main():
+    print("Loading data...")
+    while True:
+        display_menu()
+        choice = input("Choose an option (1-6): ")
+
+        if choice == "1":
+            add_item()
+        elif choice == "2":
+            view_items()
+        elif choice == "3":
+            search_item()
+        elif choice == "4":
+            delete_item()
+        elif choice == "5":
+            save_data()
+        elif choice == "6":
+            print("\nProgram End.")
+            break
+        else:
+            print("Invalid option. Try again.")
+
+
+# ======== START PROGRAM ========
+main()
